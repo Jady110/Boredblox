@@ -40,4 +40,11 @@ class GamesController
 
         return redirect()->route('games.index');
     }
+
+    public function destroy(string $game)
+    {
+        $game->delete();
+
+        return redirect()->route('games.index');
+    }
 }

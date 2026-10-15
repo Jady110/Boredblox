@@ -17,6 +17,8 @@ Route::post('/games', [GamesController::class, 'store'])
     ->name('games.store');
 Route::get('/games/create', [ProfileController::class, 'create'])
     ->name('games.create'); //deze moet bovenaan
+Route::delete('/games/{game}', [GamesController::class, 'destroy'])
+    ->name('games.destroy');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
