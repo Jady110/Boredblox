@@ -1,16 +1,22 @@
 <?php
 
-use App\Http\Controllers\ContactController;
+use App\Http\Controllers\GamesController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('home');
+})->name('home');
+
+//Route::resource('games', GamesController::class);
 
 // hier komt de url link naar andere pagina
-Route::get('contact', [ContactController::class, 'index'])->name('contact'); {
-});
+Route::get('/games', [GamesController::class, 'index'])
+    ->name('games.index');
+Route::post('/games', [GamesController::class, 'store'])
+    ->name('games.store');
+Route::get('/games/create', [ProfileController::class, 'create'])
+    ->name('games.create'); //deze moet bovenaan
 
 Route::get('/dashboard', function () {
     return view('dashboard');
