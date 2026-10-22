@@ -1,11 +1,25 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Index Page</title>
-</head>
-<body>
-<h1> Hello this will be the index page! </h1>
-</body>
-</html>
+<x-layout>
+    <div style="max-width: 1000px; margin: 40px auto; padding: 20px;">
+
+        <h1>Welcome to BoredBlox!</h1>
+        <p>Check out what our community has made!</p>
+
+        <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+
+            <a href="{{ route('games.index') }}"
+               style="display: block; padding: 25px; background: #dbeafe;
+                      border-radius: 12px; text-decoration: none; color: black;">
+                <h2>Browse Games</h2>
+                <p>See all available games.</p>
+            </a>
+
+            <a href="{{ route('games.create') }}"
+               style="display: block; padding: 25px; background: #dcfce7;
+                      border-radius: 12px; text-decoration: none; color: black;">
+                <h2>Add a Game</h2>
+                <p>Create a new game.</p>
+            </a>
+
+        </div>
+    </div>
+</x-layout>
