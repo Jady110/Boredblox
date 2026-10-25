@@ -4,9 +4,8 @@ use App\Http\Controllers\GamesController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('index');
-})->name('home');
+Route::get('/', [GamesController::class, 'index'])
+    ->name('home');
 
 //Route::resource('games', GamesController::class);
 
@@ -15,7 +14,7 @@ Route::get('/games', [GamesController::class, 'index'])
     ->name('games.index');
 Route::post('/games', [GamesController::class, 'store'])
     ->name('games.store');
-Route::get('/games/create', [ProfileController::class, 'create'])
+Route::get('/games/create', [GamesController::class, 'create'])
     ->name('games.create'); //deze moet bovenaan
 Route::delete('/games/{game}', [GamesController::class, 'destroy'])
     ->name('games.destroy');

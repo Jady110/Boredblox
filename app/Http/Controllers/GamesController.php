@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Game;
+use Illuminate\Http\Request;
+
 class GamesController
 {
     public function index()
     {
+        $games = Game::all();
 
+        return view('index', compact('games'));
     }
 
     public function show($game) {
@@ -15,7 +20,7 @@ class GamesController
 
     public function create()
     {
-        return view('games.create');
+        return view('create');
     }
 
     public function store($request)

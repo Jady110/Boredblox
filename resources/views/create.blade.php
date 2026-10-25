@@ -2,6 +2,8 @@
     <h1>Create new Game</h1>
 @dump($errors)
     <form action="{{ route('games.store') }}" method="post">
+        @csrf
+
         <div>
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" value="{{ old('name') }}"/>
