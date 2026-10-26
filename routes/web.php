@@ -10,12 +10,12 @@ Route::get('/', [GamesController::class, 'index'])
 //Route::resource('games', GamesController::class);
 
 // hier komt de url link naar andere pagina
-Route::get('/games', [GamesController::class, 'index'])
-    ->name('games.index');
+Route::get('/games/create', [GamesController::class, 'create'])
+    ->name('games.create');
 Route::post('/games', [GamesController::class, 'store'])
     ->name('games.store');
-Route::get('/games/create', [GamesController::class, 'create'])
-    ->name('games.create'); //deze moet bovenaan
+Route::get('/games', [GamesController::class, 'index'])
+    ->name('games.index');
 Route::delete('/games/{game}', [GamesController::class, 'destroy'])
     ->name('games.destroy');
 

@@ -60,6 +60,6 @@ class ProfileController extends Controller
 
     public function create()
     {
-
+        return view('create');
     }
 }

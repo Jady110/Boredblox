@@ -23,27 +23,27 @@ class GamesController
         return view('create');
     }
 
-    public function store($request)
+    public function store(Request $request)
     {
         //validation op de data
-        $request->validate([
-            'name' => 'required',
-            'description' => 'required',
-            'price' => 'required|decimal:2',
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
         ]);
 
         //info in database zetten
         $game = new Game();
-        $game->name = $request->input(key:'name');
-        $game->description = $request->input(key:'description');
-        $game->price = $request->input(key:'price');
-        $game->image_url = 'temp';
-        $game->category = 1;
+        $game->title = $validated['title'];
+        $game->description = $validated['description'];
+//        $game->image_url = 'temp';
+//        $game->category = 1;
 //        $game->user_id = 1;
 
         $game->save();
 
-        return redirect()->route('games.index');
+        return redirect()
+            ->route('games.index')
+            ->with('success', 'Game added successfully!');
     }
 
     public function destroy(string $game)
