@@ -14,7 +14,8 @@ class GamesController
         return view('index', compact('games'));
     }
 
-    public function show($game) {
+    public function show(Game $game)
+    {
         return view('games.show', compact('game'));
     }
 
@@ -48,8 +49,19 @@ class GamesController
 
     public function destroy(string $game)
     {
+        // Only administrators can delete games
+        if (!auth()->user()?->is_admin) {
+            abort(403, 'Only administrators can delete games.');
+        }
+
+        // Find the game in the database
+        $game = Game::findOrFail($game);
+
+        // Delete the game
         $game->delete();
 
-        return redirect()->route('games.index');
+        return redirect()
+            ->route('games.index')
+            ->with('success', 'Game deleted successfully!');
     }
 }

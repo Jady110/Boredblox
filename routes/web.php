@@ -15,6 +15,8 @@ Route::middleware('auth')->group(function () {
         ->name('games.create');
     Route::post('/games', [GamesController::class, 'store'])
         ->name('games.store');
+    Route::get('/games/{game}', [GamesController::class, 'show'])
+        ->name('games.show');
     Route::delete('/games/{game}', [GamesController::class, 'destroy'])
         ->name('games.destroy');
 });
