@@ -23,6 +23,13 @@
                     <x-nav-link :href="route('games.create')" :active="request()->routeIs('games.create')">
                         Create Game
                     </x-nav-link>
+
+                    @if (auth()->user()?->is_admin)
+                        <x-nav-link :href="route('admin.users')"
+                                    :active="request()->routeIs('admin.users')">
+                            Admin Dashboard
+                        </x-nav-link>
+                    @endif
                 </div>
             </div>
 

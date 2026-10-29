@@ -3,10 +3,13 @@
 use App\Http\Controllers\GamesController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
 
 // All game pages require the user to be logged in.
 Route::middleware('auth')->group(function () {
 
+    Route::get('/admin/users', [AdminController::class, 'users'])
+        ->name('admin.users');
     Route::get('/', [GamesController::class, 'index'])
         ->name('home');
     Route::get('/games', [GamesController::class, 'index'])

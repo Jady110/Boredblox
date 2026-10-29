@@ -29,7 +29,7 @@ class GamesController
         //validation op de data
         $validated = $request->validate([
             'title' => 'required|string|max:255',
-            'description' => 'required|string',
+            'description' => 'required|string|max:500',
         ]);
 
         //info in database zetten
@@ -38,7 +38,7 @@ class GamesController
         $game->description = $validated['description'];
 //        $game->image_url = 'temp';
 //        $game->category = 1;
-//        $game->user_id = 1;
+        $game->user_id = auth()->id();
 
         $game->save();
 
@@ -49,15 +49,12 @@ class GamesController
 
     public function destroy(string $game)
     {
-        // Only administrators can delete games
         if (!auth()->user()?->is_admin) {
             abort(403, 'Only administrators can delete games.');
         }
 
-        // Find the game in the database
         $game = Game::findOrFail($game);
 
-        // Delete the game
         $game->delete();
 
         return redirect()
