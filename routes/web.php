@@ -20,6 +20,10 @@ Route::middleware('auth')->group(function () {
         ->name('games.store');
     Route::get('/games/{game}', [GamesController::class, 'show'])
         ->name('games.show');
+    Route::get('/games/{game}/edit', [GamesController::class, 'edit'])
+        ->name('games.edit');
+    Route::put('/games/{game}', [GamesController::class, 'update'])
+        ->name('games.update');
     Route::delete('/games/{game}', [GamesController::class, 'destroy'])
         ->name('games.destroy');
 });
